@@ -4,7 +4,7 @@ class Movies {
   String? backdropPath;
   int? totalResults;
   bool? public;
-  String? revenue;
+  int? revenue;
   int? page;
   List<Movie>? listMovies;
   String? iso6391;
@@ -43,12 +43,8 @@ class Movies {
     public = json['public'];
     revenue = json['revenue'];
     page = json['page'];
-    if (json['movie'] != null) {
-      listMovies = <Movie>[];
-      json['movie'].forEach((v) {
-        listMovies!.add(new Movie.fromJson(v));
-      });
-    }
+    listMovies =
+        List.from(json['results']).map((e) => Movie.fromJson(e)).toList();
 
     iso6391 = json['iso_639_1'];
     totalPages = json['total_pages'];
@@ -105,7 +101,7 @@ class Movie {
   double? popularity;
   int? voteCount;
   bool? video;
-  double? voteAverage;
+  num? voteAverage;
 
   Movie(
       {this.posterPath,
