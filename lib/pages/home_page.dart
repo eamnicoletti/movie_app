@@ -42,6 +42,9 @@ class _HomePageState extends State<HomePage> {
                             'assets/images/logo_tmdb.svg',
                             semanticsLabel: 'TMDB logo',
                           ),
+                          TextField(
+                            onChanged: _controller.onChanged,
+                          ),
                           ListView.separated(
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,

@@ -1,3 +1,6 @@
+import 'package:flutter/foundation.dart';
+
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 class Movies {
   String? posterPath;
   int? id;
@@ -10,7 +13,6 @@ class Movies {
   String? iso6391;
   int? totalPages;
   String? description;
-  CreatedBy? createdBy;
   String? iso31661;
   double? averageRating;
   int? runtime;
@@ -28,7 +30,6 @@ class Movies {
     required this.iso6391,
     required this.totalPages,
     required this.description,
-    required this.createdBy,
     required this.iso31661,
     required this.averageRating,
     required this.runtime,
@@ -49,9 +50,7 @@ class Movies {
     iso6391 = json['iso_639_1'];
     totalPages = json['total_pages'];
     description = json['description'];
-    createdBy = json['created_by'] != null
-        ? new CreatedBy.fromJson(json['created_by'])
-        : null;
+
     iso31661 = json['iso_3166_1'];
     averageRating = json['average_rating'];
     runtime = json['runtime'];
@@ -74,15 +73,93 @@ class Movies {
     data['iso_639_1'] = this.iso6391;
     data['total_pages'] = this.totalPages;
     data['description'] = this.description;
-    if (this.createdBy != null) {
-      data['created_by'] = this.createdBy!.toJson();
-    }
     data['iso_3166_1'] = this.iso31661;
     data['average_rating'] = this.averageRating;
     data['runtime'] = this.runtime;
     data['name'] = this.name;
 
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'Movies(posterPath: $posterPath, id: $id, backdropPath: $backdropPath, totalResults: $totalResults, public: $public, revenue: $revenue, page: $page, listMovies: $listMovies, iso6391: $iso6391, totalPages: $totalPages, description: $description, iso31661: $iso31661, averageRating: $averageRating, runtime: $runtime, name: $name)';
+  }
+
+  @override
+  bool operator ==(covariant Movies other) {
+    if (identical(this, other)) return true;
+
+    return other.posterPath == posterPath &&
+        other.id == id &&
+        other.backdropPath == backdropPath &&
+        other.totalResults == totalResults &&
+        other.public == public &&
+        other.revenue == revenue &&
+        other.page == page &&
+        listEquals(other.listMovies, listMovies) &&
+        other.iso6391 == iso6391 &&
+        other.totalPages == totalPages &&
+        other.description == description &&
+        other.iso31661 == iso31661 &&
+        other.averageRating == averageRating &&
+        other.runtime == runtime &&
+        other.name == name;
+  }
+
+  @override
+  int get hashCode {
+    return posterPath.hashCode ^
+        id.hashCode ^
+        backdropPath.hashCode ^
+        totalResults.hashCode ^
+        public.hashCode ^
+        revenue.hashCode ^
+        page.hashCode ^
+        listMovies.hashCode ^
+        iso6391.hashCode ^
+        totalPages.hashCode ^
+        description.hashCode ^
+        iso31661.hashCode ^
+        averageRating.hashCode ^
+        runtime.hashCode ^
+        name.hashCode;
+  }
+
+  Movies copyWith({
+    String? posterPath,
+    int? id,
+    String? backdropPath,
+    int? totalResults,
+    bool? public,
+    int? revenue,
+    int? page,
+    List<Movie>? listMovies,
+    String? iso6391,
+    int? totalPages,
+    String? description,
+    String? iso31661,
+    double? averageRating,
+    int? runtime,
+    String? name,
+  }) {
+    return Movies(
+      posterPath: posterPath ?? this.posterPath,
+      id: id ?? this.id,
+      backdropPath: backdropPath ?? this.backdropPath,
+      totalResults: totalResults ?? this.totalResults,
+      public: public ?? this.public,
+      revenue: revenue ?? this.revenue,
+      page: page ?? this.page,
+      listMovies: listMovies ?? this.listMovies,
+      iso6391: iso6391 ?? this.iso6391,
+      totalPages: totalPages ?? this.totalPages,
+      description: description ?? this.description,
+      iso31661: iso31661 ?? this.iso31661,
+      averageRating: averageRating ?? this.averageRating,
+      runtime: runtime ?? this.runtime,
+      name: name ?? this.name,
+    );
   }
 }
 
@@ -104,21 +181,21 @@ class Movie {
   num? voteAverage;
 
   Movie(
-      {this.posterPath,
-      this.adult,
-      this.overview,
-      this.releaseDate,
-      this.originalTitle,
-      this.genreIds,
-      this.id,
-      this.mediaType,
-      this.originalLanguage,
-      this.title,
-      this.backdropPath,
-      this.popularity,
-      this.voteCount,
-      this.video,
-      this.voteAverage});
+      {required this.posterPath,
+      required this.adult,
+      required this.overview,
+      required this.releaseDate,
+      required this.originalTitle,
+      required this.genreIds,
+      required this.id,
+      required this.mediaType,
+      required this.originalLanguage,
+      required this.title,
+      required this.backdropPath,
+      required this.popularity,
+      required this.voteCount,
+      required this.video,
+      required this.voteAverage});
 
   Movie.fromJson(Map<String, dynamic> json) {
     posterPath = json['poster_path'];
@@ -157,30 +234,88 @@ class Movie {
     data['vote_average'] = this.voteAverage;
     return data;
   }
-}
 
-class CreatedBy {
-  String? gravatarHash;
-  String? name;
-  String? username;
-
-  CreatedBy({this.gravatarHash, this.name, this.username});
-
-  CreatedBy.fromJson(Map<String, dynamic> json) {
-    gravatarHash = json['gravatar_hash'];
-    name = json['name'];
-    username = json['username'];
+  @override
+  String toString() {
+    return 'Movie(posterPath: $posterPath, adult: $adult, overview: $overview, releaseDate: $releaseDate, originalTitle: $originalTitle, genreIds: $genreIds, id: $id, mediaType: $mediaType, originalLanguage: $originalLanguage, title: $title, backdropPath: $backdropPath, popularity: $popularity, voteCount: $voteCount, video: $video, voteAverage: $voteAverage)';
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['gravatar_hash'] = this.gravatarHash;
-    data['name'] = this.name;
-    data['username'] = this.username;
-    return data;
+  @override
+  bool operator ==(covariant Movie other) {
+    if (identical(this, other)) return true;
+
+    return other.posterPath == posterPath &&
+        other.adult == adult &&
+        other.overview == overview &&
+        other.releaseDate == releaseDate &&
+        other.originalTitle == originalTitle &&
+        listEquals(other.genreIds, genreIds) &&
+        other.id == id &&
+        other.mediaType == mediaType &&
+        other.originalLanguage == originalLanguage &&
+        other.title == title &&
+        other.backdropPath == backdropPath &&
+        other.popularity == popularity &&
+        other.voteCount == voteCount &&
+        other.video == video &&
+        other.voteAverage == voteAverage;
+  }
+
+  @override
+  int get hashCode {
+    return posterPath.hashCode ^
+        adult.hashCode ^
+        overview.hashCode ^
+        releaseDate.hashCode ^
+        originalTitle.hashCode ^
+        genreIds.hashCode ^
+        id.hashCode ^
+        mediaType.hashCode ^
+        originalLanguage.hashCode ^
+        title.hashCode ^
+        backdropPath.hashCode ^
+        popularity.hashCode ^
+        voteCount.hashCode ^
+        video.hashCode ^
+        voteAverage.hashCode;
+  }
+
+  Movie copyWith({
+    String? posterPath,
+    bool? adult,
+    String? overview,
+    String? releaseDate,
+    String? originalTitle,
+    List<int>? genreIds,
+    int? id,
+    String? mediaType,
+    String? originalLanguage,
+    String? title,
+    String? backdropPath,
+    double? popularity,
+    int? voteCount,
+    bool? video,
+    num? voteAverage,
+  }) {
+    return Movie(
+      posterPath: posterPath ?? this.posterPath,
+      adult: adult ?? this.adult,
+      overview: overview ?? this.overview,
+      releaseDate: releaseDate ?? this.releaseDate,
+      originalTitle: originalTitle ?? this.originalTitle,
+      genreIds: genreIds ?? this.genreIds,
+      id: id ?? this.id,
+      mediaType: mediaType ?? this.mediaType,
+      originalLanguage: originalLanguage ?? this.originalLanguage,
+      title: title ?? this.title,
+      backdropPath: backdropPath ?? this.backdropPath,
+      popularity: popularity ?? this.popularity,
+      voteCount: voteCount ?? this.voteCount,
+      video: video ?? this.video,
+      voteAverage: voteAverage ?? this.voteAverage,
+    );
   }
 }
-
 
 // class ObjectIds {
 //   String? movie100402;
