@@ -1,10 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movie_app/controllers/movie_controller.dart';
 import 'package:movie_app/models/movies_model.dart';
 import 'package:movie_app/repositories/movies_repository_imp.dart';
 import 'package:movie_app/service/dio_service_imp.dart';
+import 'package:movie_app/widgets/custom_list_card_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,20 +23,36 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Movies App'),
+        body: Padding(
+      padding: const EdgeInsets.all(28),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 40,
+            ),
+            SvgPicture.asset(
+              'images/logo_tmdb.svg',
+              semanticsLabel: 'TMDB logo',
+            ),
+            ValueListenableBuilder<Movies?>(
+              valueListenable: _controller.movies,
+              builder: (_, movies, __) {
+                return movies != null
+                    ? ListView.separated(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: movies.listMovies!.length,
+                        itemBuilder: (_, index) => CustomListCardWidget(
+                            movie: movies.listMovies![index]),
+                        separatorBuilder: (_, __) => const Divider(),
+                      )
+                    : Container();
+              },
+            ),
+          ],
         ),
-        body: ValueListenableBuilder<Movies?>(
-          valueListenable: _controller.movies,
-          builder: (_, movies, __) {
-            return movies != null
-                ? ListView.builder(
-                    itemCount: movies.listMovies!.length,
-                    itemBuilder: (_, index) =>
-                        Text(movies.listMovies![index].title!),
-                  )
-                : Container();
-          },
-        ));
+      ),
+    ));
   }
 }

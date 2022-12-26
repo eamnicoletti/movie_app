@@ -12,6 +12,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dio: ^4.0.6
   flutter_dotenv: ^5.0.2
+  flutter_svg: ^1.1.6
 
 dev_dependencies:
   flutter_test:
@@ -22,4 +23,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - images/logo_tmdb.svg
     - .env
