@@ -5,6 +5,7 @@ import 'package:movie_app/controllers/movie_controller.dart';
 import 'package:movie_app/models/movies_model.dart';
 import 'package:movie_app/repositories/movies_repository_imp.dart';
 import 'package:movie_app/service/dio_service_imp.dart';
+import 'package:movie_app/widgets/custom_input_widget.dart';
 import 'package:movie_app/widgets/custom_list_card_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -42,8 +43,12 @@ class _HomePageState extends State<HomePage> {
                             'assets/images/logo_tmdb.svg',
                             semanticsLabel: 'TMDB logo',
                           ),
-                          TextField(
-                            onChanged: _controller.onChanged,
+                          Padding(
+                            padding: const EdgeInsets.only(top: 16.0),
+                            child: CustomInputWidget(
+                                iconPath:
+                                    'assets/lottie/icons8_search_white.json',
+                                controller: _controller),
                           ),
                           ListView.separated(
                             physics: const NeverScrollableScrollPhysics(),
@@ -55,7 +60,8 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       )
-                    : Center(child: Lottie.asset('assets/movieLottie.json'));
+                    : Center(
+                        child: Lottie.asset('assets/lottie/movieLottie.json'));
               },
             ),
           ],
