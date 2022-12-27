@@ -58,25 +58,25 @@ class Movies {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['poster_path'] = this.posterPath;
-    data['id'] = this.id;
-    data['backdrop_path'] = this.backdropPath;
-    data['total_results'] = this.totalResults;
-    data['public'] = this.public;
-    data['revenue'] = this.revenue;
-    data['page'] = this.page;
-    if (this.listMovies != null) {
-      data['movie'] = this.listMovies!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['poster_path'] = posterPath;
+    data['id'] = id;
+    data['backdrop_path'] = backdropPath;
+    data['total_results'] = totalResults;
+    data['public'] = public;
+    data['revenue'] = revenue;
+    data['page'] = page;
+    if (listMovies != null) {
+      data['results'] = listMovies!.map((v) => v.toJson()).toList();
     }
 
-    data['iso_639_1'] = this.iso6391;
-    data['total_pages'] = this.totalPages;
-    data['description'] = this.description;
-    data['iso_3166_1'] = this.iso31661;
-    data['average_rating'] = this.averageRating;
-    data['runtime'] = this.runtime;
-    data['name'] = this.name;
+    data['iso_639_1'] = iso6391;
+    data['total_pages'] = totalPages;
+    data['description'] = description;
+    data['iso_3166_1'] = iso31661;
+    data['average_rating'] = averageRating;
+    data['runtime'] = runtime;
+    data['name'] = name;
 
     return data;
   }
@@ -216,22 +216,22 @@ class Movie {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['poster_path'] = this.posterPath;
-    data['adult'] = this.adult;
-    data['overview'] = this.overview;
-    data['release_date'] = this.releaseDate;
-    data['original_title'] = this.originalTitle;
-    data['genre_ids'] = this.genreIds;
-    data['id'] = this.id;
-    data['media_type'] = this.mediaType;
-    data['original_language'] = this.originalLanguage;
-    data['title'] = this.title;
-    data['backdrop_path'] = this.backdropPath;
-    data['popularity'] = this.popularity;
-    data['vote_count'] = this.voteCount;
-    data['video'] = this.video;
-    data['vote_average'] = this.voteAverage;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['poster_path'] = posterPath;
+    data['adult'] = adult;
+    data['overview'] = overview;
+    data['release_date'] = releaseDate;
+    data['original_title'] = originalTitle;
+    data['genre_ids'] = genreIds;
+    data['id'] = id;
+    data['media_type'] = mediaType;
+    data['original_language'] = originalLanguage;
+    data['title'] = title;
+    data['backdrop_path'] = backdropPath;
+    data['popularity'] = popularity;
+    data['vote_count'] = voteCount;
+    data['video'] = video;
+    data['vote_average'] = voteAverage;
     return data;
   }
 

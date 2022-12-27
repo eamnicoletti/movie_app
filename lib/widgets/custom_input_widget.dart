@@ -62,7 +62,7 @@ class _CustomInputWidgetState extends State<CustomInputWidget>
                 widget.controller.onChanged(value);
               },
               decoration: InputDecoration(
-                prefixIconConstraints: const BoxConstraints(maxWidth: 45),
+                prefixIconConstraints: const BoxConstraints(maxWidth: 40),
                 prefixIcon: Padding(
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Lottie.asset(
