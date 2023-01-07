@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:movie_app/controllers/movie_controller.dart';
+import 'package:movie_app/features/movie/presentation/controllers/movie_controller.dart';
 
 class CustomInputWidget extends StatefulWidget {
   final double? padding;

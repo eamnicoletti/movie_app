@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get_it/get_it.dart';
 import 'package:lottie/lottie.dart';
-import 'package:movie_app/controllers/movie_controller.dart';
-import 'package:movie_app/decorators/movies_cache_repository_decorator.dart';
-import 'package:movie_app/models/movies_model.dart';
-import 'package:movie_app/repositories/movies_repository_imp.dart';
-import 'package:movie_app/service/dio_service_imp.dart';
-import 'package:movie_app/widgets/custom_input_widget.dart';
-import 'package:movie_app/widgets/custom_list_card_widget.dart';
+import 'package:movie_app/features/movie/domain/entities/movie_entity.dart';
+import 'package:movie_app/features/movie/presentation/controllers/movie_controller.dart';
+import 'package:movie_app/features/movie/presentation/ui/widgets/custom_input_widget.dart';
+import 'package:movie_app/features/movie/presentation/ui/widgets/custom_list_card_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,13 +15,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final MovieController _controller = MovieController(
-    MoviesCacheRepositoryDecorator(
-      MoviesRepositoryImp(
-        DioServiceImp(),
-      ),
-    ),
-  );
+  late final MovieController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = GetIt.I.get<MovieController>();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +34,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 40,
             ),
-            ValueListenableBuilder<Movies?>(
+            ValueListenableBuilder<MovieEntity?>(
               valueListenable: _controller.movies,
               builder: (_, movies, __) {
                 return movies != null

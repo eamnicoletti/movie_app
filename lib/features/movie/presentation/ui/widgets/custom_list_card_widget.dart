@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_app/models/movies_model.dart';
-import 'package:movie_app/pages/details_page.dart';
+import 'package:movie_app/features/movie/domain/entities/movie_details_entity.dart';
+import 'package:movie_app/features/movie/presentation/ui/pages/details_page.dart';
 
-import '../utils/apis.utils.dart';
+import '../../../../../core/utils/apis.utils.dart';
 
 class CustomListCardWidget extends StatelessWidget {
-  final Movie movie;
+  final MovieDetailsEntity movie;
   const CustomListCardWidget({Key? key, required this.movie}) : super(key: key);
 
   @override
